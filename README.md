@@ -170,7 +170,43 @@ Ran all test suites.
 
 ---
 
-## 5. 시작 가이드 (Getting Started)
+## 5. GitHub 저장소 생성 및 코드 배포 (Git CLI 업로드 과정)
+
+로컬 저장소의 코드를 GitHub 원격 저장소에 업로드하는 전체 명령어 흐름입니다. 이 과정에서는 **GitHub CLI(`gh`)** 도구를 활용하여 원활하게 연동을 수행했습니다.
+
+### 1) 변경사항 스테이징 및 로컬 커밋
+코드 추가 및 수정 내역을 확인한 뒤, 변경된 파일을 로컬 Git 저장소에 커밋합니다.
+```bash
+# 변경 파일 확인
+git status
+
+# 전체 파일 스테이징
+git add .
+
+# 로컬 커밋 기록 생성
+git commit -m "feat: implement TDD-verified Todo application with Next.js and Shadcn UI"
+```
+
+### 2) GitHub CLI를 통한 원격 저장소 생성 및 연동
+GitHub CLI(`gh`)를 활용하면 브라우저를 켜지 않고도 터미널에서 즉시 원격 레포지토리를 만들고 로컬 origin과 연동할 수 있습니다.
+```bash
+# 'todo-app-tdd' 이름의 공개(Public) 저장소를 생성하고 로컬 origin 리모트에 연동
+gh repo create todo-app-tdd --public --source=. --remote=origin
+```
+
+### 3) 브랜치 설정 및 원격 저장소 푸시
+원격 브랜치 명명 규칙에 맞추어 기본 브랜치를 `main`으로 전환하고 코드를 최종 업로드합니다.
+```bash
+# 기본 브랜치를 main으로 이름 변경
+git branch -M main
+
+# main 브랜치 코드를 origin 원격 저장소로 업로드 (추적 상태 등록)
+git push -u origin main
+```
+
+---
+
+## 6. 시작 가이드 (Getting Started)
 
 의존성 패키지를 설치하고 로컬 개발 서버를 기동합니다.
 
